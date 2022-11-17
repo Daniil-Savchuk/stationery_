@@ -13,7 +13,7 @@ class BlogCategory(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(verbose_name='Тег', max_length=255)
+    name = models.CharField(verbose_name='Имя Тега', max_length=255)
 
     def __str__(self):
         return self.name
