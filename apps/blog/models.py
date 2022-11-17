@@ -12,7 +12,19 @@ class BlogCategory(models.Model):
         verbose_name_plural = 'Категории блога'
 
 
+class Tag(models.Model):
+    name = models.CharField(verbose_name='Тег', max_length=255)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Тег блога'
+        verbose_name_plural = 'Теги блога'
+
+
 class Article(models.Model):
+    tag = models.ManyToManyField(Tag)
     category = models.ForeignKey(to=BlogCategory, verbose_name='Категория', on_delete=models.CASCADE)
     title = models.CharField(verbose_name='Заголовок', max_length=255)
     text_preview = models.TextField(verbose_name='Текст-превью', null=True, blank=True)
