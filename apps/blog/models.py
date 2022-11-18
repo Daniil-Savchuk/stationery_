@@ -24,7 +24,7 @@ class Tag(models.Model):
 
 
 class Article(models.Model):
-    tag = models.ManyToManyField(Tag)
+    tag = models.ManyToManyField(to=Tag, verbose_name='Теги', blank=True)
     category = models.ForeignKey(to=BlogCategory, verbose_name='Категория', on_delete=models.CASCADE)
     title = models.CharField(verbose_name='Заголовок', max_length=255)
     text_preview = models.TextField(verbose_name='Текст-превью', null=True, blank=True)
