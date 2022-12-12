@@ -9,34 +9,39 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">Номер тел.: 063-029-7916</div>
 <body>
 
 <div class="container">
     <div class="row main-header">
         <div class="col-6">
-            <img src="{% static 'img/logo.png' %}" alt="" id="logo">
+            <img src="{% static 'img/stationery 2.jpg' %}" alt="" id="logo">
         </div>
-        <div class="col-6"><p class="header-text">Продаю канцелярию</p></div>
+        <div class="col-6"><p class="header-text">Канцелярия</p></div>
+        <div class="col-6"><p class="slogan">Самые лучшие товары только у нас!</p></div>
+        <p>График работ:<br>Пн: 13:00 - 16:00; Вт: 13:00 - 17:00<br>Ср: 13:00 - 17:00; Чт: 13:00 - 17:00<br>Пт: 13:00 - 16:00; Сб: 11:00 - 13:00</p>
     </div>
-    <div class="row main-menu">
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Главная</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'blog_category_list' %}">Блог</a>
-                        </li>
-                    </ul>
+    <div class="shadow-lg p-3 mb-4 bg-body rounded">
+        <div class="row main-menu">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog_category_list' %}">Блог</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </div>
 </div>
 
