@@ -22,4 +22,4 @@ def article_view(request, category_id, article_id):
 def tag_view(request, tag_id):
     tag = Tag.objects.get(id=tag_id)
     tag_articles = Article.objects.filter(tag=tag)
-    return render(request, 'blog/tag_view.html', {'tag': tag, 'tag_articles': tag_articles})
+    return render(request, 'blog/tag_view.html', {'tag': tag, 'articles': tag_articles})
