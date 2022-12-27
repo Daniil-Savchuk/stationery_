@@ -6,7 +6,12 @@
     {% endif %}
 
     <p>{{ article.text }}</p>
-
+{#    {% if article.user != None %}#}
+{#        <p>Автор: <b><font color="#483d8b">{{ article.user.get_full_name}}</font></b></p>#}
+{#        {% if article.user.image_thumbnail %}#}
+{#            <p><img src="{{ article.user.image_thumbnail.url }}" alt="Рожа автора должна была быть здесь" width='60'></p>#}
+{#        {% endif %}#}
+{#    {% endif %}#}
     <p>
         {% for tag in article.tag.all %}
             <a href="{% url 'tag_view' tag_id=tag.id %}">#{{ tag.name }} </a>&nbsp;
@@ -18,4 +23,22 @@
         Дата: <b>{{ article.publish_date }}</b>
         Категория: <b>{{ category.name }}</b>
     </p>
+
+    {% if article.user %}
+        <div class="text-end">
+            <div class="author">
+                {% if article.user.image %}
+                    <span class="avatar">
+                        <img src="{{ article.user.image_thumbnail.url }}" alt="">
+                    </span>
+                {% endif %}
+                {% if article.user.first_name %}
+                    <span class="author-name">{{ article.user.first_name }} {{ article.user.last_name }}</span>
+                {% else %}
+                    <span class="author-name">{{ article.user.username }}</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}
