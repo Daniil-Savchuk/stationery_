@@ -8,7 +8,9 @@
     <p>{{ article.text }}</p>
     {% if article.user != None %}
         <p>Автор: <b><font color="#483d8b">{{ article.user.get_full_name}}</font></b></p>
-        <p><img src="{{ article.user.image_thumbnail.url }}" alt="Рожа автора должна была быть здесь" width='60'></p>
+        {% if article.user.image_thumbnail %}
+            <p><img src="{{ article.user.image_thumbnail.url }}" alt="Рожа автора должна была быть здесь" width='60'></p>
+        {% endif %}
     {% endif %}
     <p>
         {% for tag in article.tag.all %}
