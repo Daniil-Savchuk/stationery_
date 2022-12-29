@@ -53,7 +53,7 @@ class Category(MPTTModel):
         verbose_name_plural = 'Категории'
 
 
-class Product(MPTTModel):
+class Product(models.Model):
     name = models.CharField(verbose_name='Название', max_length=255)
     slug = models.SlugField(unique=True, verbose_name='Слаг (чпу)')
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
