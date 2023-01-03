@@ -48,6 +48,9 @@ class Category(MPTTModel):
             parent = parent.parent
         return ' -> '.join(full_path[::-1])
 
+    def get_absolute_url(self):
+        return reverse('categories', args=[self.slug])
+
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
@@ -59,6 +62,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
     quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
     price = models.DecimalField(verbose_name='Цена', max_digits=12, decimal_places=2, default=0)
+    categories = models.ManyToManyField(Category, verbose_name='Категории', through='ProductCategory', blank=True)
 
     updated_at = models.DateTimeField(verbose_name='Дата изменения', auto_now=True, null=True, blank=True)
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True, null=True, blank=True)
@@ -69,3 +73,18 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+
+class ProductCategory(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
+    is_main = models.BooleanField(verbose_name='Основная категория', default=False)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if self.is_main:
+            ProductCategory.objects.filter(product=self.product).update(is_main=False)
+        super().save(force_insert, force_update, using, update_fields)
+
+    class Meta:
+        verbose_name = 'Категория товара'
+        verbose_name_plural = 'Категории товара'
