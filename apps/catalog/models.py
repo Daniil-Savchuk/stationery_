@@ -81,7 +81,7 @@ class ProductImage(models.Model):
             ProductImage.objects.get(id=self.id)
         return mark_safe(f"<img src='/{MEDIA_ROOT}{self.image_thumbnail}' width='70'>")
 
-    image_tag_thumbnail.short_description = 'Текущее изоюражение'
+    image_tag_thumbnail.short_description = 'Текущее изображение'
 
     def image_tag(self):
         if not self.image_thumbnail:
