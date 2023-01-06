@@ -6,7 +6,9 @@
             <div class="col-sm-12 col-md-4">
                 <div class="product">
                     <a href="{{ item.get_absolute_url }}">
-                        {{item.image_tag}}
+                        {% if item.image_tag != None %}
+                            {{item.image_tag}}
+                        {% endif %}
                         <b class="text-danger product-price">{{ item.price }} грн.</b>
                         <p class="product-name">{{ item.name }}</p>
                     </a>

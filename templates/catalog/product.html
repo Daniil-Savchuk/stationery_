@@ -10,10 +10,12 @@
                 <div class="row">
                     {% for image in product.images %}
                         <div class="col-6">
-                            <a href="{{ image.image.url }}" class="product-image"
-                            data-lightbox="roadtrip">
+                            {% if image.image %}
+                                <a href="{{ image.image.url }}" class="product-image"
+                                data-lightbox="roadtrip">
                                 {{image.image_tag_thumbnail}}
-                            </a>
+                                </a>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
