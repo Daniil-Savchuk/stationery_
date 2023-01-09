@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+
+{% block meta_tags %}
+    {% include '_meta_tags.html' with meta_title=product.get_meta_title meta_description=product.meta_description meta_keywords=product.meta_keywords %}
+{% endblock %}
+
 {% block content %}
     <div class="product-view">
         <h3 class="my-header">{{ product.name }}</h3>
@@ -11,9 +16,8 @@
                     {% for image in product.images %}
                         <div class="col-6">
                             {% if image.image %}
-                                <a href="{{ image.image.url }}" class="product-image"
-                                data-lightbox="roadtrip">
-                                {{image.image_tag_thumbnail}}
+                                <a href="{{ image.image.url }}" class="product-image" data-lightbox="roadtrip">
+                                    <img src="{{ image.image_thumbnail.url }}" alt="" class="img-thumbnail">
                                 </a>
                             {% endif %}
                         </div>
@@ -34,9 +38,12 @@
                         <button class="btn btn-success" type="button" id="button-addon1">Купить</button>
                     </div>
                 </form>
-                <br>
-                <h4 class="text-center">Описание</h4>
-                <p>{{ product.description }}</p>
+                {% if product.description %}
+                    <br>
+                    <h4 class="text-center">Описание</h4>
+                    <p>{{ product.description }}</p>
+                {% endif %} 
+
             </div>
 
         </div>
