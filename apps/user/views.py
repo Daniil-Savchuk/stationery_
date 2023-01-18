@@ -15,4 +15,8 @@ def user_login(request):
                 login(request, user)
                 return redirect('index')
         error = 'Неправильный логир или пароль'
-    return render(request, 'user/login.html', {'error': error})
+
+    breadcrumbs = {
+        'current': "Вход в личный кабинет"
+    }
+    return render(request, 'user/login.html', {'error': error, 'breadcrumbs': breadcrumbs})

@@ -2,6 +2,10 @@
     {% include '_meta_tags.html' with meta_title=tag.get_meta_title meta_description=tag.meta_description meta_keywords=tag.meta_keywords %}
 {% endblock %}
 
+{% block breadcrumbs %}
+    {% include '_breadcrumbs.html' %}
+{% endblock %}
+
 <h2>{{ tag.name }}</h2>
 
 {% for article in articles %}
