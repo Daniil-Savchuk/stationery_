@@ -26,7 +26,14 @@
         <div class="col-6">
             <img src="{% static 'img/stationery 2.jpg' %}" alt="" id="logo">
         </div>
-        <div class="col-6"><p class="header-text">Канцелярия</p></div>
+        <div class="col-6">
+            <p class="header-text">Канцелярия</p>
+            {% if request.user.is_authenticated %}
+                <p class="text-end">Привет, {{ request.user.username }} (<a href="{% url 'logout' %}">Выйти</a>)</p>
+            {% else %}
+                <p class="text-end"><a href="{% url 'login' %}">Войти</a>&nbsp;<a href="{% url 'register' %}">Зарегистрироваться</a></p>
+            {% endif %} 
+        </div>
         <div class="col-6"><p class="slogan">Самые лучшие товары только у нас!</p></div>
         <p>График работ:<br>Пн: 13:00 - 16:00; Вт: 13:00 - 17:00<br>Ср: 13:00 - 17:00; Чт: 13:00 - 17:00<br>Пт: 13:00 - 16:00; Сб: 11:00 - 13:00</p>
     </div>
