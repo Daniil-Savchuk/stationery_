@@ -25,7 +25,8 @@ class RegisterForm(forms.ModelForm):
             return password_confirm
         raise forms.ValidationError("Пароли не совпадают")
 
-
     class Meta:
         model = User
-        fields = ['username', 'image', 'first_name', 'last_name', 'email', 'phone', 'password', 'password_confirm']
+        fields = [
+            'username', 'image', 'first_name', 'last_name', 'email', 'phone', 'about', 'password', 'password_confirm'
+        ]

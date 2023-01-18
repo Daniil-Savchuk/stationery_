@@ -14,7 +14,7 @@ def user_login(request):
             if user:
                 login(request, user)
                 return redirect('index')
-        error = 'Неправильный логир или пароль'
+        error = 'Неправильный логин или пароль'
 
     breadcrumbs = {
         'current': "Вход в личный кабинет"
