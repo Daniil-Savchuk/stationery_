@@ -4,9 +4,25 @@ from apps.catalog.models import Category, Product
 
 
 class CategoryIndexView(generic.ListView):
+    category = None
     model = Category
     template_name = 'catalog/index.html'
     queryset = Category.objects.filter(parent=None)
+
+    def set_breadcrumbs(self):
+        breadcrumbs = {reverse('catalog'): "Каталог"}
+
+        category = self.category
+        categories = []
+        parent = category.parent
+        while parent is not None:
+            categories.append((reverse('categories', args=[parent.slug]), parent.name))
+            parent = parent.parent
+        for key, value in categories[::-1]:
+            breadcrumbs.update({key: value})
+
+        breadcrumbs.update({'current': self.category.name})
+        return breadcrumbs
 
 
 class ProductsByCategoryView(generic.ListView):
