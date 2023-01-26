@@ -19,6 +19,9 @@ def add_to_cart(request):
     data = request.GET.copy()
     data.update(user=request.user)
     request.GET = data
+    breadcrumbs = {
+        'current': "Добавлено!"
+    }
 
     form = AddToCartForm(request.GET)
     if form.is_valid():
@@ -32,7 +35,7 @@ def add_to_cart(request):
         return render(
             request,
             'order/added.html',
-            {"product": cd['product'], "cart": get_car_data(cd['user'])}
+            {"product": cd['product'], "cart": get_car_data(cd['user']), 'breadcrumbs': breadcrumbs}
         )
 
 
