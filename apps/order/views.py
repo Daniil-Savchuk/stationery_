@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from apps.order.forms import AddToCartForm, CreateOrderForm
 from apps.order.models import Cart
@@ -70,7 +71,11 @@ def create_order(request):
         if form.is_valid():
             form.save()
             Cart.objects.filter(user=user).delete()
-            return render(request, 'order/created.html')
+            breadcrumbs = {
+                reverse('cart_page'): 'Корзина',
+                'current': 'Заказ оформлен!'
+            }
+            return render(request, 'order/created.html', {'breadcrumbs': breadcrumbs})
         error = form.errors
     else:
         form = CreateOrderForm(data={
@@ -79,4 +84,10 @@ def create_order(request):
             'last_name': user.last_name,
             'email': user.email
         })
-    return render(request, 'order/create.html', {'cart': cart, 'error': error, 'form': form})
+
+    breadcrumbs = {
+        reverse('cart_page'): 'Корзина',
+        'current': 'Оформление заказа'
+    }
+    return render(request, 'order/create.html',
+                  {'cart': cart, 'error': error, 'form': form, 'breadcrumbs': breadcrumbs})
