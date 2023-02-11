@@ -30,9 +30,17 @@ def user_register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            return render(request, 'user/welcome.html', {'user': user})
+            breadcrumbs = {
+                'current': "Добро пожаловать"
+            }
+            return render(request, 'user/welcome.html', {'user': user, 'breadcrumbs': breadcrumbs})
         error = form.errors
-    return render(request, 'user/register.html', {'error': error})
+
+    breadcrumbs = {
+        'current': "Регистрация"
+    }
+
+    return render(request, 'user/register.html', {'error': error, 'breadcrumbs': breadcrumbs})
 
 
 def user_logout(request):
