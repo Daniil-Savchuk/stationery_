@@ -1,11 +1,9 @@
-from django.urls import path
 from apps.api.blog.views import ArticleViewSet
 from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-]
+urlpatterns = []
 
 router = DefaultRouter()
-router.register('blog', ArticleViewSet, basename='blog')
+router.register('article', ArticleViewSet, basename='article')
 
 urlpatterns += router.urls

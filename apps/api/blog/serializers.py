@@ -1,49 +1,59 @@
 from rest_framework import serializers
 
-from apps.blog.models import Article
+from apps.blog.models import Article, BlogCategory, Tag
 
 
-class BlogSerializer(serializers.ModelSerializer):
-    slug = serializers.CharField(write_only=True)
-
+class TagSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Article
+        madel = Tag
         fields = (
             'id',
-            'category',
-            'user',
-            'image',
-            'title',
-            'text_preview',
-            'text',
+            'name',
         )
 
 
-class BlogWriteSerializer(serializers.ModelSerializer):
+class BlogCategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Article
+        model = BlogCategory
         fields = (
             'id',
-            'category',
-            'user',
+            'name',
             'image',
-            'title',
-            'text_preview',
-            'text',
         )
 
 
-class BlogReadSerializer(serializers.ModelSerializer):
-    categories = BlogSerializer(many=True)
+class ArticleWriteSerializer(serializers.ModelSerializer):
+    tag = serializers.ListField(child=serializers.CharField(max_length=64))
+    class Meta:
+        model = Article
+        fields = (
+            'id',
+            'category',
+            'image',
+            'title',
+            'text_preview',
+            'text',
+            'publish_date',
+            'tag'
+        )
+
+
+class ArticleReadSerializer(serializers.ModelSerializer):
+    category = BlogCategorySerializer(many=True)
+    tag = TagSerializer(many=True)
 
     class Meta:
         model = Article
         fields = (
             'id',
             'category',
-            'user',
             'image',
+            'user',
             'title',
             'text_preview',
             'text',
+            'publish_date',
+            'created_at',
+            # 'image_thumbnail'
+            'tag'
         )
