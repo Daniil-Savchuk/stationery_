@@ -14,3 +14,15 @@ class Page(MetaTagMixin):
     class Meta:
         verbose_name = 'Информационная страница'
         verbose_name_plural = 'Информационные страницы'
+
+class Contact(MetaTagMixin):
+    name = models.CharField(verbose_name='Имя', max_length=255)
+    slug = models.SlugField(unique=True)
+    text = HTMLField(verbose_name='Содержание', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Контактная страница'
+        verbose_name_plural = 'Контактные страницы'

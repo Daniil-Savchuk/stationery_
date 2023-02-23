@@ -14,5 +14,13 @@
       "name": "Оплата и доставка",
       "slug": "payment-and-shipping"
     }
+  },
+  {
+    "model": "main.contact",
+    "pk": 1,
+    "fields": {
+      "name": "Контакты",
+      "slug": "contact"
+    }
   }
 ]
