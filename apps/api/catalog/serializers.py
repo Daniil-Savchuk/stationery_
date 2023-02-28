@@ -33,22 +33,6 @@ class ProductWriteSerializer(serializers.ModelSerializer):
         )
 
 
-class ProductReadSerializer(serializers.ModelSerializer):
-    categories = CategorySerializer(many=True)
-
-    class Meta:
-        model = Product
-        fields = (
-            'id',
-            'name',
-            'slug',
-            'description',
-            'quantity',
-            'price',
-            'categories',
-        )
-
-
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
@@ -57,4 +41,24 @@ class ProductImageSerializer(serializers.ModelSerializer):
             'image',
             'product',
             'is_main',
+        )
+
+
+class ProductReadSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True)
+    main_image = ProductImageSerializer()
+    categories = CategorySerializer(many=True)
+
+    class Meta:
+        model = Product
+        fields = (
+            'id',
+            'name',
+            'images',
+            'main_image',
+            'slug',
+            'description',
+            'quantity',
+            'price',
+            'categories',
         )

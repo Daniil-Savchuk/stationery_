@@ -24,6 +24,7 @@ class BlogCategorySerializer(serializers.ModelSerializer):
 
 class ArticleWriteSerializer(serializers.ModelSerializer):
     tag = serializers.ListField(child=serializers.CharField(max_length=64))
+
     class Meta:
         model = Article
         fields = (
