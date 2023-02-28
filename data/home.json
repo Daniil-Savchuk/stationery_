@@ -1,0 +1,10 @@
+[
+  {
+    "model": "main.page",
+    "pk": 1,
+    "fields": {
+      "name": "Главная",
+      "slug": "home"
+    }
+  }
+]
