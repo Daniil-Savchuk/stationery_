@@ -46,8 +46,45 @@
                 {% else %}
                     <span class="author-name">{{ article.user.username }}</span>
                 {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% if request.user.is_authenticated %}
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Коментарий</label>
+                            <textarea name="text" id="text" class="form-control"
+                                      rows="3">{{ form.data.comment }}</textarea>
+                        </div>
+                    {% else %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Имя</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ form.data.name }}"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="email" name="email" required
+                                   value="{{ form.data.email }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Комментарий</label>
+                            <textarea name="text" id="text" class="form-control"
+                                      rows="3">{{ form.data.comment }}</textarea>
+                        </div>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-primary">Создать комментрарий</button>
+                </form>
+
             </div>
         </div>
+
+        <p>
+            {% for coment in comments %}
+                <p class="text-left">Автор: {{ coment.name }}
+                <p class="text-left">{{ coment.text }}
+            {% endfor %}
+            </p>
     {% endif %}
 
 {% endblock %}

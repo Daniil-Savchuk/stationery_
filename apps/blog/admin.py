@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.blog.models import BlogCategory, Article, Tag
+from apps.blog.models import BlogCategory, Article, Tag, Comment
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
@@ -44,3 +44,9 @@ class ArticleAdmin(admin.ModelAdmin):
         return format_html(result)
 
     tag_link.short_description = 'Теги'
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    list_display_links = ['id', 'name']
